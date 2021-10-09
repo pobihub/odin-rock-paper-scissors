@@ -7,109 +7,137 @@
     <title>Document</title>
 </head>
 <body>
+    <!--Button interface -->
+    <button id= "rockPlay">
+        Play Rock
+    </button>
+    <button id= "paperPlay">
+        Play Paper
+    </button>
+    <button id= "scissorsPlay">
+        Play Scissors
+    </button>
     <script>
-        // This function helps the user to select play: Rock, Paper or Scissors.
-        function selectPlay ()  {
+        const rockPlay = document.querySelector('#rockPlay');
+        const paperPlay = document.querySelector('#paperPlay');
+        const scissorsPlay = document.querySelector('#scissorsPlay');
 
-            let initialInput = prompt("Please select your play");
+        rockPlay.addEventListener('click', () => {
+            selectPlay('rock');
+        });
+
+        paperPlay.addEventListener('click', () => {
+            selectPlay('paper');
+        });
+
+        scissorsPlay.addEventListener('click', () => {
+            selectPlay('scissors');
+        });
+
+
+        // This function helps the user to select play: Rock, Paper or Scissors.
+        function selectPlay (play) {
+
+            let initialInput = play;
             let initialInput1 = initialInput.charAt(0);
             let initialInput2 = initialInput.slice(1);
             const playerSelection = (initialInput1.toUpperCase() + initialInput2.toLowerCase());            
             return playerSelection;
+            //console.log(playerSelection);
         }
         
-        //This function will create the random computer play.
-        function computerPlay() {
-            let randomPlay = ['Rock','Paper','Scissors'];
-            const computerSelection = randomPlay[Math.floor(Math.random()*randomPlay.length)];
-            return computerSelection;
-        }
+        // //This function will create the random computer play.
+        // function computerPlay() {
+        //     let randomPlay = ['Rock','Paper','Scissors'];
+        //     const computerSelection = randomPlay[Math.floor(Math.random()*randomPlay.length)];
+        //     return computerSelection;
+        // }
        
-        // This function plays a single round of Rock Paper Scissors.
-        function playRound( playerSelection, computerSelection) {
-            if (playerSelection === computerSelection)  {
-                return "Tie! Your pick matches computers";                
-            }
+        // // This function plays a single round of Rock Paper Scissors.
+        // function playRound( playerSelection, computerSelection) {
+        //     if (playerSelection === computerSelection)  {
+        //         return "Tie! Your pick matches computers";                
+        //     }
 
-            else {switch (playerSelection != computerSelection) {
-                case (playerSelection ==="Rock" && computerSelection === "Paper"):
-                    return "You lose! Paper covers Rock";                    
-                    break;
-                case (playerSelection ==="Rock" && computerSelection === "Scissors"):
-                    return "You won! Rock beats Scissors";                   
-                    break;
-                case (playerSelection ==="Paper" && computerSelection === "Rock"):
-                    return "You won!Paper beats Rock";                    
-                    break;
-                case (playerSelection ==="Paper" && computerSelection === "Scissors"):
-                    return "You lose! Scissors cuts Paper"                    
-                    break;
-                case (playerSelection ==="Scissors" && computerSelection === "Rock"):
-                    return "You lose!Rock beats Scissors";                     
-                    break;
-                case (playerSelection ==="Scissors" && computerSelection === "Paper"):
-                    return "You won! Scissors cuts Paper";                    
-                }      
-            }
-        }    
+        //     else {switch (playerSelection != computerSelection) {
+        //         case (playerSelection ==="Rock" && computerSelection === "Paper"):
+        //             return "You lose! Paper covers Rock";                    
+        //             break;
+        //         case (playerSelection ==="Rock" && computerSelection === "Scissors"):
+        //             return "You won! Rock beats Scissors";                   
+        //             break;
+        //         case (playerSelection ==="Paper" && computerSelection === "Rock"):
+        //             return "You won!Paper beats Rock";                    
+        //             break;
+        //         case (playerSelection ==="Paper" && computerSelection === "Scissors"):
+        //             return "You lose! Scissors cuts Paper"                    
+        //             break;
+        //         case (playerSelection ==="Scissors" && computerSelection === "Rock"):
+        //             return "You lose!Rock beats Scissors";                     
+        //             break;
+        //         case (playerSelection ==="Scissors" && computerSelection === "Paper"):
+        //             return "You won! Scissors cuts Paper";                    
+        //         }      
+        //     }
+        // }    
         
-        let playerSelection = selectPlay();
-        let computerSelection = computerPlay();
+        // let playerSelection = selectPlay();
+        // let computerSelection = computerPlay();
                 
-        //This function keeps player points.
-        let playerPoint = 0;
-        function playerPoints() {
+        // //This function keeps player points.
+        // let playerPoint = 0;
+        // function playerPoints() {
             
-            if (playerSelection === computerSelection)  {
-                playerPoint = 1;
+        //     if (playerSelection === computerSelection)  {
+        //         playerPoint = 1;
                              
-            }
-            else switch (playerSelection != computerSelection) {
-                case (playerSelection ==="Rock" && computerSelection === "Scissors"):
-                    playerPoint = 2;                                       
-                    break;
-                case (playerSelection ==="Paper" && computerSelection === "Rock"):
-                    playerPoint = 2;                                       
-                    break;
-                case (playerSelection === "Scissors" && computerSelection === "Paper"):
-                    playerPoint = 2;                    
-                    break;
-                default:
-                    playerPoint = 0;                    
-           } 
+        //     }
+        //     else switch (playerSelection != computerSelection) {
+        //         case (playerSelection ==="Rock" && computerSelection === "Scissors"):
+        //             playerPoint = 2;                                       
+        //             break;
+        //         case (playerSelection ==="Paper" && computerSelection === "Rock"):
+        //             playerPoint = 2;                                       
+        //             break;
+        //         case (playerSelection === "Scissors" && computerSelection === "Paper"):
+        //             playerPoint = 2;                    
+        //             break;
+        //         default:
+        //             playerPoint = 0;                    
+        //    } 
            
-        }     
+        // }     
         
         //This function plays a five round game.
         let gamePoint = 0;
-        function game() {
-            for (i=1;i<=5;i++) {
-                console.log("This is Round:", i);
-                playerSelection = selectPlay();
-                computerSelection = computerPlay();
-                playerPoint = playerPoints();
-                playRound(playerSelection, computerSelection);        
-                playerPoints();
-                console.log(playRound(playerSelection, computerSelection));
-                console.log("Points scored this round:", playerPoint);
-                gamePoint += playerPoint;
+        // function game() {
+        //     for (i=1;i<=5;i++) {
+        //         console.log("This is Round:", i);
+        //         playerSelection = selectPlay();
+        //         computerSelection = computerPlay();
+        //         playerPoint = playerPoints();
+        //         playRound(playerSelection, computerSelection);        
+        //         playerPoints();
+        //         console.log(playRound(playerSelection, computerSelection));
+        //         console.log("Points scored this round:", playerPoint);
+        //         gamePoint += playerPoint;
                 
-                if (i==5) {
-                    if (gamePoint > 5) {
-                            console.log("Total Game Points:", gamePoint);
-                            console.log("Congratulations!! You won the five round game.");
-                        }
-                    else if (gamePoint === 5) {
-                            console.log("Total Game Points:", gamePoint);
-                            console.log("Tie the five round game; Good try");
-                        }
-                    else console.log("Total Game Points:", gamePoint);
-                    console.log("You lose the five round game. Try better next time");
-                }
-                }
-            }  
+        //         if (i==5) {
+        //             if (gamePoint > 5) {
+        //                     console.log("Total Game Points:", gamePoint);
+        //                     console.log("Congratulations!! You won the five round game.");
+        //                 }
+        //             else if (gamePoint === 5) {
+        //                     console.log("Total Game Points:", gamePoint);
+        //                     console.log("Tie the five round game; Good try");
+        //                 }
+        //             else console.log("Total Game Points:", gamePoint);
+        //             console.log("You lose the five round game. Try better next time");
+        //         }
+        //         }
+        //     }  
             
-        game();
+        // game();
             
 
         
