@@ -17,34 +17,41 @@
     <button id= "scissorsPlay">
         Play Scissors
     </button>
+    <div id= "container"></div>
     <script>
+        
+
+
+        
+        //Selecting play and making a one round play
         let play;
         let initialInput;
+        let result;
         let rockPlay = document.querySelector('#rockPlay');
         let paperPlay = document.querySelector('#paperPlay');
         let scissorsPlay = document.querySelector('#scissorsPlay');
 
         rockPlay.addEventListener('click', () => {            
-            let playerSelection = 'Rock';            
+            let playerSelection = 'Rock';                      
             computerSelection = computerPlay(); 
-            playRound(playerSelection,computerSelection);
+            playRound(playerSelection,computerSelection);    
+            const report = document.querySelector('#container');            
         });
 
-        paperPlay.addEventListener('click', () => {            
+            paperPlay.addEventListener('click', () => {            
             let playerSelection = 'Paper';            
             computerSelection = computerPlay(); 
             playRound(playerSelection,computerSelection);
-        });
+            const report = document.querySelector('#container');
+            });
 
         scissorsPlay.addEventListener('click', () => {    
             let playerSelection = 'Scissors';            
             computerSelection = computerPlay(); 
             playRound(playerSelection,computerSelection); 
-                     
+            const report = document.querySelector('#container');                               
         });
-
-
-    
+   
         // //This function will create the random computer play.
         function computerPlay() {
             let randomPlay = ['Rock','Paper','Scissors'];
@@ -56,41 +63,58 @@
         let computerSelection = computerPlay();
         
         // This function plays a single round of Rock Paper Scissors.
-        function playRound( playerSelection, computerSelection) {
-            if (playerSelection === computerSelection)  {
-                //return "Tie! Your pick matches computers";
-                console.log("Tie! Your pick matches computers")                
+        function playRound(playerSelection,computerSelection)  {
+            if (playerSelection === computerSelection)  {                 
+                let result= "Tie! Your pick matches computers"; 
+                const report = document.querySelector('#container');
+                report.textContent = `This is the result: ${result}`;
+                return report.textContent;               
             }
 
             else {switch (playerSelection != computerSelection) {
-                case (playerSelection ==="Rock" && computerSelection === "Paper"):
-                    //return "You lose! Paper covers Rock"; 
-                   console.log("You lose! Paper covers Rock");                   
+                case (playerSelection ==="Rock" && computerSelection === "Paper"):                    
+                   result=  "You lose! Paper covers Rock"; 
+                    report = document.querySelector('#container');
+                    report.textContent = `This is the result: ${result}`; 
+                    return report.textContent;                  
                     break;
-                case (playerSelection ==="Rock" && computerSelection === "Scissors"):
-                    //return "You won! Rock beats Scissors"; 
-                    console.log("You won! Rock beats Scissors");                  
+                case (playerSelection ==="Rock" && computerSelection === "Scissors"):                    
+                    result = "You won! Rock beats Scissors";
+                    report = document.querySelector('#container');
+                    report.textContent = `This is the result: ${result}`;
+                    return report.textContent;                
                     break;
-                case (playerSelection ==="Paper" && computerSelection === "Rock"):
-                    //return "You won!Paper beats Rock"; 
-                    console.log("You won!Paper beats Rock");                   
+                case (playerSelection ==="Paper" && computerSelection === "Rock"):                    
+                    result = "You won!Paper beats Rock";
+                    report = document.querySelector('#container');
+                    report.textContent = `This is the result: ${result}`;
+                    return report.textContent;                    
                     break;
-                case (playerSelection ==="Paper" && computerSelection === "Scissors"):
-                    //return "You lose! Scissors cuts Paper" 
-                    console.log("You lose! Scissors cuts Paper");                   
+                case (playerSelection ==="Paper" && computerSelection === "Scissors"):                    
+                    result = "You lose! Scissors cuts Paper";
+                    report = document.querySelector('#container');
+                    report.textContent = `This is the result: ${result}`;
+                    return report.textContent;                     
                     break;
-                case (playerSelection ==="Scissors" && computerSelection === "Rock"):
-                    //return "You lose!Rock beats Scissors";
-                    console.log("You lose!Rock beats Scissors");                     
+                case (playerSelection ==="Scissors" && computerSelection === "Rock"):                    
+                    result = "You lose!Rock beats Scissors";
+                    report = document.querySelector('#container');
+                    report.textContent = `This is the result: ${result}`;
+                    return report.textContent;                        
                     break;
-                case (playerSelection ==="Scissors" && computerSelection === "Paper"):
-                    //return "You won! Scissors cuts Paper";
-                    console.log("You won! Scissors cuts Paper");
+                case (playerSelection ==="Scissors" && computerSelection === "Paper"):                    
+                    result = "You won! Scissors cuts Paper";
+                    report = document.querySelector('#container');
+                    report.textContent = `This is the result: ${result}`;
+                    return report.textContent; 
                 }      
             }
         }    
         
-        
+       // const report = document.querySelector('#container');
+       // report.textContent = playRound(playerSelection,computerSelection);
+        //"This is game result";
+
         //playRound(playerSelection,computerSelection);
                 
         // //This function keeps player points.
