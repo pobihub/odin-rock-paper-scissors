@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--Button interface -->
+    <button id= "rockPlay">
+        Play Rock
+    </button>
+    <button id= "paperPlay">
+        Play Paper
+    </button>
+    <button id= "scissorsPlay">
+        Play Scissors
+    </button>
+    <div id= "container"></div>
+    <script>
+        // This section of the code creats and appends containers for game user interface
+
+        let container = document.querySelector('#container');
+        container.textContent = "Game Score Board";
+        
+        let report1   = document.createElement('div');
+        let report2   = document.createElement('div');
+        let report3   = document.createElement('div');
+        let report4   = document.createElement('div');
+        let report5   = document.createElement('div');      
+
+        container.appendChild(report1);
+        container.appendChild(report2);
+        container.appendChild(report3);
+        container.appendChild(report4);
+        container.appendChild(report5);
+        
+        //Styling the container
+        container.setAttribute('style','background: white; border: 2px black solid;fontSize:30px');
+        report1.setAttribute('style', 'color: white; background: blue; border: 2px black solid');
+        report2.setAttribute('style', 'color: white; background: red; border: 2px black solid');
+        report3.setAttribute('style', 'color: red; background: white; border: 2px black solid');
+        report4.setAttribute('style', 'color: white; background: green; border: 2px black solid');
+        report5.setAttribute('style', 'color: white; background: red; border: 2px black solid');
+
+        //This section of the code selects and plays game
+        let play;
+        let initialInput;
+        let result;
+        let rockPlay = document.querySelector('#rockPlay');
+        let paperPlay = document.querySelector('#paperPlay');
+        let scissorsPlay = document.querySelector('#scissorsPlay');
+
+        //styling the button and the containers
+        rockPlay.setAttribute('style', 'color:red; background:white');
+        paperPlay.setAttribute('style', 'color:white; background:blue');
+        scissorsPlay.setAttribute('style', 'color:blue; background:red');
+
+
+        rockPlay.addEventListener('click', () => {            
+            let playerSelection = 'Rock';                             
+            computerSelection = computerPlay();
+            playRound(playerSelection,computerSelection);            
+            let playerPoint = playerPoints(playerSelection);
+            let playerTotalPoint = playerPoints(playerSelection);
+            let computerTotalPoint = computerPoints(playerSelection);                       
+            
+            computerPoints(playerSelection);  
+            playerPoints(playerSelection);
+                                 
+            game(playerSelection);            
+        });
+
+            paperPlay.addEventListener('click', () => {            
+            let playerSelection = 'Paper';            
+            computerSelection = computerPlay();
+            playRound(playerSelection,computerSelection);            
+            let playerPoint = playerPoints(playerSelection);
+            let playerTotalPoint = playerPoints(playerSelection);
+            let computerTotalPoint = computerPoints(playerSelection);                        
+            
+            computerPoints(playerSelection);
+            playerPoints(playerSelection);
+                     
+            game(playerSelection);
+            });
+
+        scissorsPlay.addEventListener('click', () => {    
+            let playerSelection = 'Scissors';            
+            computerSelection = computerPlay();
+            playRound(playerSelection,computerSelection);                       
+            let playerPoint = playerPoints(playerSelection);
+            let playerTotalPoint = playerPoints(playerSelection);
+            let computerTotalPoint = computerPoints(playerSelection);            
+            
+            computerPoints(playerSelection); 
+            playerPoints(playerSelection);
+                       
+            game(playerSelection);                          
+        });
+   
+        //This function will create the random computer play.
+        function computerPlay() {
+            let randomPlay = ['Rock','Paper','Scissors'];
+            const computerSelection = randomPlay[Math.floor(Math.random()*randomPlay.length)];
+            return computerSelection;
+        }
+       
+        
+         // This section of the code plays a single round of Rock Paper Scissors.
+               
+        computerPlay();
+
+        let computerSelection = computerPlay();
+
+
+        function playRound(playerSelection,computerSelection)  {
+            if (playerSelection === computerSelection)  {                 
+                let result = "Tie! Your pick matches computers";                
+                report1.textContent = `Player current round result: ${result}`;
+                return report1.textContent;               
+            }
+
+            else {switch (playerSelection != computerSelection) {
+                case (playerSelection ==="Rock" && computerSelection === "Paper"):                    
+                    result=  "You lose! Paper covers Rock";                    
+                    report1.textContent = `Player current round result: ${result}`; 
+                    return report1.textContent;                  
+                    break;
+                case (playerSelection ==="Rock" && computerSelection === "Scissors"):                    
+                    result = "You won! Rock beats Scissors";                    
+                    report1.textContent = `Player current round result: ${result}`;
+                    return report1.textContent;                
+                    break;
+                case (playerSelection ==="Paper" && computerSelection === "Rock"):                    
+                    result = "You won!Paper beats Rock";                    
+                    report1.textContent = `Player current round result: ${result}`;
+                    return report1.textContent;                    
+                    break;
+                case (playerSelection ==="Paper" && computerSelection === "Scissors"):                    
+                    result = "You lose! Scissors cuts Paper";                    
+                    report1.textContent = `Player current round result: ${result}`;
+                    return report1.textContent;                     
+                    break;
+                case (playerSelection ==="Scissors" && computerSelection === "Rock"):                    
+                    result = "You lose!Rock beats Scissors";                    
+                    report1.textContent = `Player current round result: ${result}`;
+                    return report1.textContent;                        
+                    break;
+                case (playerSelection ==="Scissors" && computerSelection === "Paper"):                    
+                    result = "You won! Scissors cuts Paper";                    
+                    report1.textContent = `Player current round result: ${result}`;
+                    return report1.textContent; 
+                }      
+            }
+        }  
+                      
+        // //This function keeps player points.
+        let playerPoint;
+        let computerPoint;  
+        let playerSelection;
+        function playerPoints(playerSelection)  {            
+            if  (playerSelection === computerSelection)  {
+                let playerPoint = 1;                
+                report2.textContent = `Player points scored this round: ${playerPoint}`;
+                return playerPoint;                
+                             
+             }
+            else {switch (playerSelection != computerSelection) {
+                case (playerSelection ==="Rock" && computerSelection === "Scissors"):
+                    playerPoint = 2;
+                    report2.textContent = `Player points scored this round: ${playerPoint}`;
+                    return playerPoint;                                                              
+                    break;
+                case (playerSelection ==="Paper" && computerSelection === "Rock"):
+                    playerPoint = 2;
+                    report2.textContent = `Player points scored this round: ${playerPoint}`;
+                    return playerPoint;                                                           
+                    break;
+                case (playerSelection === "Scissors" && computerSelection === "Paper"):
+                    playerPoint = 2;                    
+                    report2.textContent = `Player points scored this round: ${playerPoint}`;
+                    return playerPoint;                                         
+                    break;
+                default:
+                    playerPoint = 0;
+                    report2.textContent = `Player points scored this round: ${playerPoint}`;
+                    return playerPoint;
+                }                                       
+            }            
+        }    
+                
+         function computerPoints(playerSelection) {          
+            if (playerSelection === computerSelection)  {
+                computerPoint = 1;
+                report3.textContent = `Computer Points scored this round: ${computerPoint}`;
+                return computerPoint;                             
+             }
+            else switch (playerSelection != computerSelection) {
+                case (playerSelection ==="Rock" && computerSelection === "Scissors"):
+                    computerPoint = 0;
+                    report3.textContent = `Computer Points scored this round: ${computerPoint}`;
+                    return computerPoint;                                     
+                    break;
+                case (playerSelection ==="Paper" && computerSelection === "Rock"):
+                    computerPoint = 0;
+                    report3.textContent = `Computer Points scored this round: ${computerPoint}`;
+                    return computerPoint;                                       
+                    break;
+                case (playerSelection === "Scissors" && computerSelection === "Paper"):                     
+                    computerPoint = 0; 
+                    report3.textContent = `Computer Points scored this round: ${computerPoint}`;
+                    return computerPoint;                     
+                    break;
+                default:                     
+                    computerPoint = 2; 
+                    report3.textContent = `Computer Points scored this round: ${computerPoint}`;
+                    return computerPoint;                   
+            } 
+           
+        }     
+        //This section of the code keeps the game scores and declares the winner at the end 
+        //of the game.
+
+        let playerTotalPoint = 0;
+        let computerTotalPoint = 0;
+        let playerTotalPoints = 0;
+        let computerTotalPoints = 0;
+        function game(playerSelection){
+            for(i=0; i<5; i++) {
+
+                if(playerTotalPoints< 5 && computerTotalPoints < 5) {
+                
+                    //computerSelection = computerPlay();
+                    playerTotalPoint = playerPoints(playerSelection);
+                    computerTotalPoint = computerPoints(playerSelection);               
+                    playerTotalPoints+= playerTotalPoint;
+                    computerTotalPoints+= computerTotalPoint;                
+                    report4.textContent = `Total Game Points: ${playerTotalPoints}`;
+                    return report4.textContent; 
+                }
+                else {
+                    if (playerTotalPoints > 5) { 
+                    report5.textContent = "Congratulations!! You won the game.";
+                    return report5.textContent;
+                    }
+                    else if (playerTotalPoints === 5) {
+                    report5.textContent = "Tie the game; Good try";    
+                    return report5.textContent;
+                    }
+                    else report5.textContent = "You lost the game; try better next time";
+                    return report5.textContent;
+                    }
+                }               
+            }         
+            
+    </script>
+</body>
+</html>
